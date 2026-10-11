@@ -25,7 +25,9 @@ from utils.logger import logger
 
 
 class Embedding:
-
+    """  
+    初始化嵌入模型 + 文本转向量 + 问题转向量
+    """
     def __init__(self):
         # 初始化嵌入模型：BAAI/bge-m3
         try:
