@@ -14,6 +14,7 @@
 # 加入根目录，单测文件时使用
 import sys
 from pathlib import Path
+
 sys.path.append(
     str(
         Path(__file__).parent.parent
@@ -24,10 +25,12 @@ sys.path.append(
 
 
 
+from config.settings import Setting
 from core.embedding import Embedding
 from core.vector_store import MilvusStore
-from config.settings import Setting
 from utils.logger import logger
+
+
 class Retriever:
     """  
     用户提问转向量 + 向量库检索 + 拼装上下文

@@ -34,7 +34,7 @@ class Embedding:
             self.model = init_embeddings(
                 # model="openai:" + Setting.EMBED_MODEL,
                 model=Setting.EMBED_MODEL,
-                provider="openai",
+                provider=Setting.EMBED_MODEL_PROVIDER,
                 api_key=Setting.EMBED_API_KEY,
                 base_url=Setting.EMBED_BASE_URL,
             )
