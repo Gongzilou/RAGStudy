@@ -25,14 +25,16 @@ from utils.logger import logger
 
 
 class Embedding:
-
+    """  
+    初始化嵌入模型 + 文本转向量 + 问题转向量
+    """
     def __init__(self):
         # 初始化嵌入模型：BAAI/bge-m3
         try:
             self.model = init_embeddings(
                 # model="openai:" + Setting.EMBED_MODEL,
                 model=Setting.EMBED_MODEL,
-                provider="openai",
+                provider=Setting.EMBED_MODEL_PROVIDER,
                 api_key=Setting.EMBED_API_KEY,
                 base_url=Setting.EMBED_BASE_URL,
             )

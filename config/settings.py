@@ -40,19 +40,29 @@ class Setting:
     # 硅基流动平台
     # 嵌入模型名称(使用模型为：BAAI/bge-m3)
     EMBED_MODEL = os.getenv("EMBED_MODEL")
+    # 嵌入模型提供商（openai）
+    EMBED_MODEL_PROVIDER = os.getenv("EMBED_MODEL_PROVIDER")
     # 嵌入模型密钥
     EMBED_API_KEY = os.getenv("EMBED_API_KEY")
     # 嵌入模型地址
     EMBED_BASE_URL = os.getenv("EMBED_BASE_URL")
     # 嵌入模型维度（向量数据库创建集合时需要）
-    EMBED_DIMENSION = os.getenv("EMBED_DIMENSION")
+    EMBED_DIMENSION = int(os.getenv("EMBED_DIMENSION"))
 
     # Milvus服务端地址
-    MILVUS_URL=os.getenv("MILVUS_URL")
+    MILVUS_URL = os.getenv("MILVUS_URL")
     # Milvus数据库名称
-    MILVUS_DB_NAME=os.getenv("MILVUS_DB_NAME")
+    MILVUS_DB_NAME = os.getenv("MILVUS_DB_NAME")
     # Milvus集合名称
-    MILVUS_COLLECTION=os.getenv("MILVUS_COLLECTION")
+    MILVUS_COLLECTION = os.getenv("MILVUS_COLLECTION")
+    # 检索返回的结果数量
+    RETRIEVER_TOP_K = int(os.getenv("RETRIEVER_TOP_K"))
+
+    # ollama本地模型
+    # 对话模型名称（qwen2.5:14b-instruct-q4_K_M）
+    CHAT_MODEL = os.getenv("CHAT_MODEL")
+    # 模型提供商（ollama）
+    CHAT_MODEL_PROVIDER = os.getenv("CHAT_MODEL_PROVIDER")
 
 
 
