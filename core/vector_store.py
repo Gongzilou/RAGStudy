@@ -96,14 +96,14 @@ class MilvusStore:
                 "vector":vector,
                 "text":text_list[i],
                 "source":source
-            } for i,vector in vector_list
+            } for i,vector in enumerate(vector_list)
         ]
         # 将数据存入集合
         result = self.client.upsert(
             collection_name=self.collection_name,
             data=data_list
         )
-        logger.info(f"已存入{len(result)}条数据：\n{result}")
+        logger.info(f"已存入{len(data_list)}条数据：\n{result}")
 
     def search(self,query_vector,limit):
         # 根据用户提问，查询最接近的几条结果
