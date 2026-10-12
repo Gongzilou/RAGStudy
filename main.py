@@ -2,6 +2,8 @@
 主程序入口
 """
 
+import sys
+
 from core.pipeline import RAGPipeline
 from utils.logger import logger
 
