@@ -25,7 +25,9 @@ load_dotenv()
 
 class Setting:
     # 知识库文件的存储路径
-    KNOWLEDGE_FILE_PATH = os.getenv("KNOWLEDGE_FILE_PATH")
+    # KNOWLEDGE_FILE_PATH = os.getenv("KNOWLEDGE_FILE_PATH") # 单文档路径
+    KNOWLEDGE_SOURCE_FOLDER_PATH = os.getenv("KNOWLEDGE_SOURCE_FOLDER_PATH") # 源目录路径（多文档存放处）
+    KNOWLEDGE_TARGET_FOLDER_PATH = os.getenv("KNOWLEDGE_TARGET_FOLDER_PATH") # 目标路径（加载完的文档存放处）
 
     # log日志的存储路径
     LOG_FILE_PATH = os.getenv("LOG_FILE_PATH")
