@@ -65,11 +65,31 @@ def get_logger(name:str,log_file_path:str=Setting.LOG_FILE_PATH):
     # 只有文档名，则会存在运行目录下；
     # 有路径 + 文档名，则要先创建路径，否则logging.FileHandler()报错
 
-    # 获取要存文档的所在目录，只有文档名就获取空值""
-    file_path = os.path.dirname(log_file_path)
-    # 有路径，自动创建，空值路径会让os.makedirs报错，所以做判断
-    if file_path:
-        os.makedirs(file_path,exist_ok=True)
+
+
+
+
+    # # =====创建路径方式一（使用os）=====
+    # # 获取要存文档的所在目录，只有文档名就获取空值""
+    # file_path = os.path.dirname(log_file_path)
+    # # 空值路径会让os.makedirs报错，所以做判断
+    # if file_path:
+    #     os.makedirs(file_path,exist_ok=True)
+
+
+    # =====创建路径方式二（使用Path）=====
+    # 1.先将路径字符串转为Path对象
+    path = Path(log_file_path)
+    # 2.直接调用mkdir
+    # parents=True表示可以创建多级目录
+    # exist_ok=True表示存在路径就跳过
+    # 与os区别在于：无需判断空路径，当只有文件名时，此处不是空路径，是"."，表示当前路径；但因为当前路径存在，所以不会再创建
+    path.parent.mkdir(parents=True,exist_ok=True)
+
+
+
+
+
     log_file = logging.FileHandler(filename=log_file_path,encoding="utf-8") # 文档输出
     log_file.setFormatter(log_structured_output)
     logger.addHandler(log_file)
