@@ -37,7 +37,8 @@ class DocumentLoader:
     # 加载文件
     def load(self)->list:
         # 先判断文件是否存在
-        if not os.path.exists(self.file_path):
+        if not Path(self.file_path).exists(): # Path对象方式
+        # if not os.path.exists(self.file_path): # os方式
             logger.error(f"知识库文件{self.file_path}不存在")
             raise FileNotFoundError(
                 f"知识库文件【{self.file_path}】不存在\n"
