@@ -86,7 +86,8 @@ class TextSplitter:
 if __name__ == "__main__":
     from core.document_loader import DocumentLoader
     loader = DocumentLoader()
-    docs = loader.load()
+    # docs = loader.load()
+    docs = loader.load_all_files()
     splitter = TextSplitter()
     chunks = splitter.splite_documents(docs)
     text_list = splitter.change_to_text_list(chunks)

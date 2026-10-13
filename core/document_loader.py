@@ -149,11 +149,11 @@ class DocumentLoader:
                     all_files.extend(document_list)
                     logger.info(f"文档{str(file_path)}加载完成，共{len(document_list)}个片段")
 
-                    # 把加载成功的文档移走（保留子目录格式不变）
-                    # relative是相对路径（子目录+文件名）：文件总路径-源路径
-                    relative = file_path.relative_to(self.source_path)
-                    # relative.parent获取子目录，与目标路径进行拼接
-                    shutil.move(file_path, self.target_path / relative.parent)
+                    # # 把加载成功的文档移走（保留子目录格式不变）
+                    # # relative是相对路径（子目录+文件名）：文件总路径-源路径
+                    # relative = file_path.relative_to(self.source_path)
+                    # # relative.parent获取子目录，与目标路径进行拼接
+                    # shutil.move(file_path, self.target_path / relative.parent)
                 except Exception as e:
                     logger.error(f"文档{file_path}加载失败：\n{e}")
                     # 加载失败的文档不进行移动
