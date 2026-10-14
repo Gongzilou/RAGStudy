@@ -70,14 +70,18 @@ class TextSplitter:
 
     # 转化
     def change_to_text_list(self,chunks):
-        # 从切分好的document对象列表中提取所有page_content,
+        # 从处理好的chunks（已剔除数据库存在的chunk）中提取所有page_content,
         # 转为字符串列表,
-        # 便于后续做向量化
+        # 便于后续做向量化，
+        # 同时记录对应来源——子目录+文档名（不再从setting获取，那里只记录目录路径）
         text_list = [
             doc.page_content for doc in chunks
         ]
-        logger.info("切好的文档已转换为字符串列表，后续可以直接做嵌入处理")
-        return text_list
+        source_list = [
+            doc.metadata["source"] for doc in chunks
+        ]
+        # logger.info("切好的文档已转换为字符串列表，后续可以直接做嵌入处理")
+        return text_list,source_list
 
 
 
