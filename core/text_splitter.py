@@ -43,6 +43,8 @@ class TextSplitter:
                 chunk_size=Setting.CHUNK_SIZE,
                 chunk_overlap=Setting.CHUNK_OVERLAP,
                 separators=[
+                    "\n# ", # md文档一级标题
+                    "\n## ", # md文档二级标题
                     "==============================",
                     "\n\n",
                     "\n",

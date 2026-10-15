@@ -41,3 +41,10 @@ logs/
 # *.swp
 # .DS_Store
 # Thumbs.db
+
+
+
+
+
+# ===== 评估报告 =====
+reports/

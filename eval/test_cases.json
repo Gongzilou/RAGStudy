@@ -1,0 +1,163 @@
+[
+  {
+    "id": 1,
+    "query": "星云X2的屏幕分辨率是多少？亮度多少尼特？",
+    "expected_sources": ["产品技术规格.md"],
+    "expected_keywords": ["466", "1000"],
+    "note": "md：屏幕参数"
+  },
+  {
+    "id": 2,
+    "query": "星云X2支持哪些卫星定位系统？",
+    "expected_sources": ["产品技术规格.md"],
+    "expected_keywords": ["GPS", "北斗"],
+    "note": "md：传感器/定位"
+  },
+  {
+    "id": 3,
+    "query": "手表的电池容量是多大？",
+    "expected_sources": ["产品技术规格.md"],
+    "expected_keywords": ["410"],
+    "note": "md：电池容量"
+  },
+  {
+    "id": 4,
+    "query": "手表防水等级是多少？能戴着游泳吗？",
+    "expected_sources": ["产品技术规格.md", "产品用户手册.pdf"],
+    "expected_keywords": ["50米", "5ATM"],
+    "note": "跨文档重叠题：md 和 pdf 都提50米防水，命中任一即算对"
+  },
+  {
+    "id": 5,
+    "query": "星云X2尊享版卖多少钱？",
+    "expected_sources": ["产品型号价格库存表.csv"],
+    "expected_keywords": ["1899"],
+    "note": "csv：型号价格"
+  },
+  {
+    "id": 6,
+    "query": "哪款手表最便宜？多少钱？",
+    "expected_sources": ["产品型号价格库存表.csv"],
+    "expected_keywords": ["799", "X1"],
+    "note": "csv：最低价型号"
+  },
+  {
+    "id": 7,
+    "query": "星云X2运动版配的是什么材质的表带？",
+    "expected_sources": ["产品型号价格库存表.csv"],
+    "expected_keywords": ["氟橡胶"],
+    "note": "csv：运动版表带"
+  },
+  {
+    "id": 8,
+    "query": "曜石黑有哪几个型号？各自库存多少？",
+    "expected_sources": ["产品型号价格库存表.csv"],
+    "expected_keywords": ["标准版", "尊享版"],
+    "note": "csv：同色多型号，需聚合多行"
+  },
+  {
+    "id": 9,
+    "query": "手表怎么开机？要按多久？",
+    "expected_sources": ["产品用户手册.pdf"],
+    "expected_keywords": ["表冠", "两秒"],
+    "note": "pdf：开机操作"
+  },
+  {
+    "id": 10,
+    "query": "怎么更换表带？兼容多宽的标准表带？",
+    "expected_sources": ["产品用户手册.pdf"],
+    "expected_keywords": ["20毫米", "卡扣"],
+    "note": "pdf：表带更换"
+  },
+  {
+    "id": 11,
+    "query": "用磁吸底座充满电大概要多久？",
+    "expected_sources": ["产品用户手册.pdf"],
+    "expected_keywords": ["两小时"],
+    "note": "pdf：充电时长"
+  },
+  {
+    "id": 12,
+    "query": "标准模式下续航能有多久？",
+    "expected_sources": ["产品技术规格.md", "产品用户手册.pdf"],
+    "expected_keywords": ["14天", "十四天"],
+    "note": "跨文档重叠题：md和pdf都写14天，命中任一即算对"
+  },
+  {
+    "id": 13,
+    "query": "手表连不上手机蓝牙，怎么排查？",
+    "expected_sources": ["常见问题FAQ.txt"],
+    "expected_keywords": ["删除", "配对"],
+    "note": "faq：蓝牙连接"
+  },
+  {
+    "id": 14,
+    "query": "屏幕触摸没反应了怎么办？",
+    "expected_sources": ["常见问题FAQ.txt"],
+    "expected_keywords": ["擦拭", "重启"],
+    "note": "faq：触摸失灵"
+  },
+  {
+    "id": 15,
+    "query": "最近感觉续航明显变短了，可能是什么原因？",
+    "expected_sources": ["常见问题FAQ.txt"],
+    "expected_keywords": ["心率", "常亮"],
+    "note": "faq：续航变短原因"
+  },
+  {
+    "id": 16,
+    "query": "手表收不到手机消息通知怎么回事？",
+    "expected_sources": ["常见问题FAQ.txt"],
+    "expected_keywords": ["通知权限", "勿扰"],
+    "note": "faq：通知问题"
+  },
+  {
+    "id": 17,
+    "query": "当前最新的固件版本号是多少？",
+    "expected_sources": ["固件与设备配置.json"],
+    "expected_keywords": ["2.0.7"],
+    "note": "json：固件版本"
+  },
+  {
+    "id": 18,
+    "query": "最新固件是什么时候发布的？更新了什么？",
+    "expected_sources": ["固件与设备配置.json"],
+    "expected_keywords": ["2026-09-15", "表盘商店"],
+    "note": "json：发布日期+更新内容"
+  },
+  {
+    "id": 19,
+    "query": "手表本地存储多大？能存多少首音乐？",
+    "expected_sources": ["固件与设备配置.json"],
+    "expected_keywords": ["32MB", "500"],
+    "note": "json：存储容量"
+  },
+  {
+    "id": 20,
+    "query": "手表整机保修几年？电池保修多久？",
+    "expected_sources": ["售后服务与保修政策.docx"],
+    "expected_keywords": ["两年", "一年"],
+    "note": "docx：保修期限"
+  },
+  {
+    "id": 21,
+    "query": "不小心进水了，这种情况保修吗？",
+    "expected_sources": ["售后服务与保修政策.docx"],
+    "expected_keywords": ["不保修", "超出防水"],
+    "note": "docx：不予保修情形（注意和防水规格题区分）"
+  },
+  {
+    "id": 22,
+    "query": "官方维修要多久？维修期间有备用机吗？",
+    "expected_sources": ["售后服务与保修政策.docx"],
+    "expected_keywords": ["5个工作日", "备用机"],
+    "note": "docx：维修时效"
+  },
+  {
+    "id": 23,
+    "query": "七天无理由退货需要满足什么条件？",
+    "expected_sources": ["售后服务与保修政策.docx"],
+    "expected_keywords": ["包装完好", "购买凭证"],
+    "note": "docx：退换货流程"
+  }
+]
