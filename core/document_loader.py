@@ -74,7 +74,8 @@ class DocumentLoader:
         elif suffix == ".json":
             loader = JSONLoader(
                 file_path,
-                jq_schema="." # 加载全部内容
+                jq_schema=".", # 加载全部内容
+                text_content=False # 允许里面的内容不是字符串，而是对象/字典等格式
             )
         else:
             raise ValueError(f"不支持文档格式：{file_path}")

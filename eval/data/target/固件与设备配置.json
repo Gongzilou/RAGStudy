@@ -1,0 +1,21 @@
+{
+  "firmware": {
+    "version": "2.0.7",
+    "release_date": "2026-09-15",
+    "changelog": "优化血氧监测算法，修复消息通知偶发延迟，新增表盘商店支持。"
+  },
+  "default_config": {
+    "watch_face": "经典数字",
+    "heart_rate_monitor": "on",
+    "raise_to_wake": true,
+    "brightness": "auto"
+  },
+  "network": {
+    "ble": "5.0",
+    "wifi": "2.4G"
+  },
+  "storage": {
+    "watch_storage": "32MB",
+    "music_capacity": "500首"
+  }
+}
