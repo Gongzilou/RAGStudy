@@ -15,6 +15,7 @@ RAG评估脚本
 
 import sys
 from pathlib import Path
+
 sys.path.append(
     str(
         Path(__file__).parent.parent
@@ -26,10 +27,13 @@ sys.path.append(
 
 
 import json
-from utils.logger import logger
+
+from core.agent import Agent
 from core.embedding import Embedding
 from core.vector_store import MilvusStore
-from core.agent import Agent
+from utils.logger import logger
+
+
 # 加载测试集test_cases.json
 def load_test_cases(path="eval/test_cases.json"):
     with open(path,encoding="utf-8") as f:
@@ -146,6 +150,7 @@ if __name__ == "__main__":
 
     # 存报告（加时间戳，不覆盖历史报告）
     from datetime import datetime
+
     # 存放路径
     path = Path("eval/reports")
     # 创建路径，可以是多级目录，存在就跳过
