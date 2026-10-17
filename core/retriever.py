@@ -44,8 +44,21 @@ class Retriever:
     def retriever(self,query:str,limit:int=Setting.RETRIEVER_TOP_K):
         # 1.问题转向量
         query_vector = self.embedding.embed_query(query)
-        # 2.向量检索
-        result = self.vector_store.search(query_vector,limit)
+
+
+
+        # 基础版
+        # # 2.向量检索
+        # result = self.vector_store.search(query_vector,limit)
+
+        # 检索进阶版1
+        # 2.向量检索 + BM25关键词检索（已经经过RRF粗排）
+        logger.info("开始进行双路检索")
+        result = self.vector_store.search(query,query_vector,limit)
+        logger.info("双路检索结束")
+
+
+
         # 3.拼装上下文（将返回的结果格式化后拼成一大段字符串，中间以段落相隔）
         context_block = []
         for i,row in enumerate(result,1):

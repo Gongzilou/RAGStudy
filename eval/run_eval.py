@@ -58,7 +58,7 @@ def evaluate(cases,embed,vector_store,agent):
         # # 初始化数据库
         # vector_store = MilvusStore()
         # 检索召回
-        result = vector_store.search(query_vector,3)
+        result = vector_store.search(query,query_vector,3)
 
 
 
