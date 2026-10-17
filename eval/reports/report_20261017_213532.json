@@ -1,0 +1,430 @@
+{
+  "total": 23,
+  "recall_hit_rate": 0.783,
+  "results": [
+    {
+      "id": 1,
+      "query": "星云X2的屏幕分辨率是多少？亮度多少尼特？",
+      "hit": true,
+      "recalled_sources": [
+        "产品型号价格库存表.csv",
+        "产品技术规格.md",
+        "产品用户手册.pdf"
+      ],
+      "expected_sources": [
+        "产品技术规格.md"
+      ],
+      "answer": "星云X2的屏幕分辨率为466 x 466，亮度为1000尼特。",
+      "covered": [
+        "466",
+        "1000"
+      ],
+      "missed": []
+    },
+    {
+      "id": 2,
+      "query": "星云X2支持哪些卫星定位系统？",
+      "hit": true,
+      "recalled_sources": [
+        "产品技术规格.md",
+        "产品用户手册.pdf",
+        "常见问题FAQ.txt"
+      ],
+      "expected_sources": [
+        "产品技术规格.md"
+      ],
+      "answer": "星云X2支持的卫星定位系统包括GPS、GLONASS和北斗。",
+      "covered": [
+        "GPS",
+        "北斗"
+      ],
+      "missed": []
+    },
+    {
+      "id": 3,
+      "query": "手表的电池容量是多大？",
+      "hit": true,
+      "recalled_sources": [
+        "产品技术规格.md",
+        "产品用户手册.pdf",
+        "固件与设备配置.json"
+      ],
+      "expected_sources": [
+        "产品技术规格.md"
+      ],
+      "answer": "根据上下文，星云 X2 智能手表的电池容量是 410 mAh。",
+      "covered": [
+        "410"
+      ],
+      "missed": []
+    },
+    {
+      "id": 4,
+      "query": "手表防水等级是多少？能戴着游泳吗？",
+      "hit": true,
+      "recalled_sources": [
+        "产品技术规格.md",
+        "产品用户手册.pdf"
+      ],
+      "expected_sources": [
+        "产品技术规格.md",
+        "产品用户手册.pdf"
+      ],
+      "answer": "星云 X2 智能手表的防水等级为 5 ATM（50 米），这意味着它可以在游泳时佩戴，但不建议在潜水或深水活动中使用。不过，具体能否戴着游泳还需根据游泳时的具体情况（如是否会大量接触水）以及个人对设备防护的信心来判断。通常，5 ATM 的防水等级足以支持日常佩戴和浅水活动，如游泳和冲浪。",
+      "covered": [],
+      "missed": [
+        "50米",
+        "5ATM"
+      ]
+    },
+    {
+      "id": 5,
+      "query": "星云X2尊享版卖多少钱？",
+      "hit": true,
+      "recalled_sources": [
+        "产品型号价格库存表.csv"
+      ],
+      "expected_sources": [
+        "产品型号价格库存表.csv"
+      ],
+      "answer": "星云X2尊享版的售价是1899元。",
+      "covered": [
+        "1899"
+      ],
+      "missed": []
+    },
+    {
+      "id": 6,
+      "query": "哪款手表最便宜？多少钱？",
+      "hit": false,
+      "recalled_sources": [
+        "售后服务与保修政策.docx",
+        "常见问题FAQ.txt"
+      ],
+      "expected_sources": [
+        "产品型号价格库存表.csv"
+      ],
+      "answer": "不知道哪款手表最便宜及价格，上下文未提供相关手表的价格信息。",
+      "covered": [],
+      "missed": [
+        "799",
+        "X1"
+      ]
+    },
+    {
+      "id": 7,
+      "query": "星云X2运动版配的是什么材质的表带？",
+      "hit": true,
+      "recalled_sources": [
+        "产品型号价格库存表.csv",
+        "产品用户手册.pdf"
+      ],
+      "expected_sources": [
+        "产品型号价格库存表.csv"
+      ],
+      "answer": "星云X2运动版配的是氟橡胶材质的表带。",
+      "covered": [
+        "氟橡胶"
+      ],
+      "missed": []
+    },
+    {
+      "id": 8,
+      "query": "曜石黑有哪几个型号？各自库存多少？",
+      "hit": true,
+      "recalled_sources": [
+        "产品型号价格库存表.csv"
+      ],
+      "expected_sources": [
+        "产品型号价格库存表.csv"
+      ],
+      "answer": "根据提供的上下文，曜石黑有以下两个型号及其库存数量：\n\n1. 星云X2标准版：库存320台\n2. 星云X2尊享版：库存95台\n\n没有其他曜石黑颜色的型号信息。",
+      "covered": [
+        "标准版",
+        "尊享版"
+      ],
+      "missed": []
+    },
+    {
+      "id": 9,
+      "query": "手表怎么开机？要按多久？",
+      "hit": true,
+      "recalled_sources": [
+        "产品技术规格.md",
+        "产品用户手册.pdf",
+        "常见问题FAQ.txt"
+      ],
+      "expected_sources": [
+        "产品用户手册.pdf"
+      ],
+      "answer": "根据上下文提供的信息，星云 X2 智能手表的开机方法是长按右侧表冠两秒。不需要按更长时间，两秒足够完成开机操作。",
+      "covered": [
+        "表冠",
+        "两秒"
+      ],
+      "missed": []
+    },
+    {
+      "id": 10,
+      "query": "怎么更换表带？兼容多宽的标准表带？",
+      "hit": true,
+      "recalled_sources": [
+        "产品技术规格.md",
+        "产品用户手册.pdf",
+        "常见问题FAQ.txt"
+      ],
+      "expected_sources": [
+        "产品用户手册.pdf"
+      ],
+      "answer": "根据上下文信息，更换表带的方法是按住表带接口处的卡扣并向外拉，即可拆卸表带。星云 X2 兼容二十毫米（20毫米）标准表带。",
+      "covered": [
+        "20毫米",
+        "卡扣"
+      ],
+      "missed": []
+    },
+    {
+      "id": 11,
+      "query": "用磁吸底座充满电大概要多久？",
+      "hit": true,
+      "recalled_sources": [
+        "产品型号价格库存表.csv",
+        "产品用户手册.pdf"
+      ],
+      "expected_sources": [
+        "产品用户手册.pdf"
+      ],
+      "answer": "根据上下文信息，使用磁吸充电底座充满电大约需要两小时。",
+      "covered": [
+        "两小时"
+      ],
+      "missed": []
+    },
+    {
+      "id": 12,
+      "query": "标准模式下续航能有多久？",
+      "hit": true,
+      "recalled_sources": [
+        "产品型号价格库存表.csv",
+        "产品技术规格.md",
+        "产品用户手册.pdf"
+      ],
+      "expected_sources": [
+        "产品技术规格.md",
+        "产品用户手册.pdf"
+      ],
+      "answer": "标准模式下续航为14天。",
+      "covered": [
+        "14天"
+      ],
+      "missed": [
+        "十四天"
+      ]
+    },
+    {
+      "id": 13,
+      "query": "手表连不上手机蓝牙，怎么排查？",
+      "hit": true,
+      "recalled_sources": [
+        "产品型号价格库存表.csv",
+        "常见问题FAQ.txt"
+      ],
+      "expected_sources": [
+        "常见问题FAQ.txt"
+      ],
+      "answer": "请先确认手机蓝牙已开启，并在手机端删除旧配对记录后重新搜索。若仍无法连接，重启手表并确保手机系统为 Android 8.0 或 iOS 13 及以上版本。",
+      "covered": [
+        "删除",
+        "配对"
+      ],
+      "missed": []
+    },
+    {
+      "id": 14,
+      "query": "屏幕触摸没反应了怎么办？",
+      "hit": false,
+      "recalled_sources": [
+        "产品型号价格库存表.csv"
+      ],
+      "expected_sources": [
+        "常见问题FAQ.txt"
+      ],
+      "answer": "不知道，上下文没有提供关于屏幕触摸没反应的解决方法。",
+      "covered": [],
+      "missed": [
+        "擦拭",
+        "重启"
+      ]
+    },
+    {
+      "id": 15,
+      "query": "最近感觉续航明显变短了，可能是什么原因？",
+      "hit": false,
+      "recalled_sources": [
+        "产品技术规格.md",
+        "产品用户手册.pdf",
+        "售后服务与保修政策.docx"
+      ],
+      "expected_sources": [
+        "常见问题FAQ.txt"
+      ],
+      "answer": "根据上下文提供的信息，智能手表在连续心率监测模式下的续航为七天。如果最近感觉续航明显变短了，可能的原因包括但不限于：\n\n1. 使用模式发生变化，例如从标准模式变为连续心率监测模式，后者耗电更多。\n2. 屏幕亮度设置得较高。\n3. 安装了新的或频繁使用某些应用程序，增加了耗电量。\n4. 电池老化，导致容量下降，从而影响续航时间。\n5. 系统更新后，新版本软件可能增加了电量消耗。\n6. 表带等配件的连接可能影响电池接触，导致充电不充分。\n\n如果上述情况都不适用或调整后仍然存在问题，建议检查是否有硬件故障或联系售后服务获取进一步帮助。",
+      "covered": [
+        "心率"
+      ],
+      "missed": [
+        "常亮"
+      ]
+    },
+    {
+      "id": 16,
+      "query": "手表收不到手机消息通知怎么回事？",
+      "hit": true,
+      "recalled_sources": [
+        "产品型号价格库存表.csv",
+        "产品技术规格.md",
+        "常见问题FAQ.txt"
+      ],
+      "expected_sources": [
+        "常见问题FAQ.txt"
+      ],
+      "answer": "根据上下文中的常见问题FAQ，手表收不到消息通知的原因可能是通知权限未开启，或者手表与手机未保持连接，也可能手表开启了勿扰模式。建议在App中检查这些设置。",
+      "covered": [
+        "通知权限",
+        "勿扰"
+      ],
+      "missed": []
+    },
+    {
+      "id": 17,
+      "query": "当前最新的固件版本号是多少？",
+      "hit": false,
+      "recalled_sources": [
+        "产品用户手册.pdf",
+        "售后服务与保修政策.docx",
+        "常见问题FAQ.txt"
+      ],
+      "expected_sources": [
+        "固件与设备配置.json"
+      ],
+      "answer": "不知道，上下文没有提供关于当前最新的固件版本号的信息。",
+      "covered": [],
+      "missed": [
+        "2.0.7"
+      ]
+    },
+    {
+      "id": 18,
+      "query": "最新固件是什么时候发布的？更新了什么？",
+      "hit": false,
+      "recalled_sources": [
+        "产品用户手册.pdf",
+        "售后服务与保修政策.docx",
+        "常见问题FAQ.txt"
+      ],
+      "expected_sources": [
+        "固件与设备配置.json"
+      ],
+      "answer": "上下文中没有关于最新固件发布日期或更新内容的信息。",
+      "covered": [],
+      "missed": [
+        "2026-09-15",
+        "表盘商店"
+      ]
+    },
+    {
+      "id": 19,
+      "query": "手表本地存储多大？能存多少首音乐？",
+      "hit": true,
+      "recalled_sources": [
+        "产品用户手册.pdf",
+        "固件与设备配置.json",
+        "常见问题FAQ.txt"
+      ],
+      "expected_sources": [
+        "固件与设备配置.json"
+      ],
+      "answer": "根据提供的上下文信息，没有关于星云 X2 智能手表本地存储容量以及存储音乐数量的具体说明。因此，对于手表本地存储有多大和能存多少首音乐的问题，上下文没有提供相关信息，所以不知道具体答案。",
+      "covered": [],
+      "missed": [
+        "32MB",
+        "500"
+      ]
+    },
+    {
+      "id": 20,
+      "query": "手表整机保修几年？电池保修多久？",
+      "hit": true,
+      "recalled_sources": [
+        "产品技术规格.md",
+        "售后服务与保修政策.docx"
+      ],
+      "expected_sources": [
+        "售后服务与保修政策.docx"
+      ],
+      "answer": "根据提供的上下文信息，星云 X2 智能手表的保修政策如下：\n\n- 手表整机保修两年。\n- 电池保修一年。",
+      "covered": [
+        "两年",
+        "一年"
+      ],
+      "missed": []
+    },
+    {
+      "id": 21,
+      "query": "不小心进水了，这种情况保修吗？",
+      "hit": true,
+      "recalled_sources": [
+        "产品用户手册.pdf",
+        "售后服务与保修政策.docx"
+      ],
+      "expected_sources": [
+        "售后服务与保修政策.docx"
+      ],
+      "answer": "根据上下文中的信息，如果星云 X2 智能手表因为进水导致故障，这种情况不在保修范围内。因为进水通常被视为超出防水等级范围的人为损坏。所以，这种情况下一般不会进行保修。",
+      "covered": [
+        "超出防水"
+      ],
+      "missed": [
+        "不保修"
+      ]
+    },
+    {
+      "id": 22,
+      "query": "官方维修要多久？维修期间有备用机吗？",
+      "hit": true,
+      "recalled_sources": [
+        "产品技术规格.md",
+        "售后服务与保修政策.docx",
+        "常见问题FAQ.txt"
+      ],
+      "expected_sources": [
+        "售后服务与保修政策.docx"
+      ],
+      "answer": "根据上下文信息，官方维修网点在收到设备后五个工作日内完成检测与维修。维修期间会提供备用机。",
+      "covered": [
+        "备用机"
+      ],
+      "missed": [
+        "5个工作日"
+      ]
+    },
+    {
+      "id": 23,
+      "query": "七天无理由退货需要满足什么条件？",
+      "hit": true,
+      "recalled_sources": [
+        "售后服务与保修政策.docx",
+        "常见问题FAQ.txt"
+      ],
+      "expected_sources": [
+        "售后服务与保修政策.docx"
+      ],
+      "answer": "根据提供的上下文信息，七天无理由退货的具体条件如下：\n\n1. 保证商品及包装完好。\n2. 需提供购买凭证。\n\n除此之外的信息上下文并未提及。",
+      "covered": [
+        "包装完好",
+        "购买凭证"
+      ],
+      "missed": []
+    }
+  ]
+}
