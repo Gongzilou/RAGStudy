@@ -50,6 +50,8 @@ class Setting:
     EMBED_BASE_URL = os.getenv("EMBED_BASE_URL")
     # 嵌入模型维度（向量数据库创建集合时需要）
     EMBED_DIMENSION = int(os.getenv("EMBED_DIMENSION"))
+    # 重排序模型名称(使用模型为：BAAI/bge-reranker-v2-m3)
+    RERANK_MODEL = os.getenv("RERANK_MODEL")
 
     # Milvus服务端地址
     MILVUS_URL = os.getenv("MILVUS_URL")

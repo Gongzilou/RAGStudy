@@ -30,6 +30,7 @@ import json
 
 from core.agent import Agent
 from core.embedding import Embedding
+from core.reranker import Reranker
 from core.vector_store import MilvusStore
 from utils.logger import logger
 
@@ -40,7 +41,7 @@ def load_test_cases(path="eval/test_cases.json"):
         return json.load(f)
 
 # 评估所有问题
-def evaluate(cases,embed,vector_store,agent):
+def evaluate(cases,embed,vector_store,agent,reranker):
     # 对于每个问题，如果期望来源里有被召回的，就属于命中，命中次数+1
     hit_count = 0
     # 记录每个问题的检测情况
@@ -58,7 +59,10 @@ def evaluate(cases,embed,vector_store,agent):
         # # 初始化数据库
         # vector_store = MilvusStore()
         # 检索召回
-        result = vector_store.search(query,query_vector,3)
+        recall_result = vector_store.search(query,query_vector)
+
+        # rerank重排
+        result = reranker.rerank(query,recall_result,3)
 
 
 
@@ -140,8 +144,10 @@ if __name__ == "__main__":
     vector_store = MilvusStore()
     # 初始化Agent
     agent = Agent()
+    # 初始重排序器
+    reranker = Reranker()
     # 根据测试集进行评估,生成评估报告
-    report = evaluate(cases,embed,vector_store,agent)
+    report = evaluate(cases,embed,vector_store,agent,reranker)
 
     print("="*30)
     print(f"测试用例：{report['total']}条")

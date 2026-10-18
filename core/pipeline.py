@@ -8,16 +8,18 @@ RAG完整链路:
 嵌入用户提问——数据库语义查询——Agent结合上下文和用户提问进行作答
 """
 
+import shutil
+from pathlib import Path
+
 from config.settings import Setting
 from core.agent import Agent
 from core.document_loader import DocumentLoader
 from core.embedding import Embedding
+from core.reranker import Reranker
 from core.retriever import Retriever
 from core.text_splitter import TextSplitter
 from core.vector_store import MilvusStore
 from utils.logger import logger
-from pathlib import Path
-import shutil
 
 
 # 进阶版：批量读取 + 多种格式；增量更新；文件归档；删除失效chunk/source
@@ -79,8 +81,9 @@ class RAGPipeline:
         # 与数据库对比，数据库有target目录没有的source就删除
         vector_store.detele_source(file_list)
 
-        # 8.初始化检索器和Agent
-        self.retriever = Retriever(embed,vector_store) # 指明检索器使用的嵌入模型和数据库
+        # 8.初始化重排序器、检索器和Agent
+        reranker = Reranker()
+        self.retriever = Retriever(embed,vector_store,reranker) # 指明检索器使用的嵌入模型和数据库、重排序器
         self.agent = Agent()
         logger.info("="*10 + "RAG初始化结束" + "="*10)
 

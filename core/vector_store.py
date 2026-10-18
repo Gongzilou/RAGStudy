@@ -287,44 +287,44 @@ class MilvusStore:
 
 
 
-    # 检索进阶版1：语义检索 + BM25关键词检索 + RRF粗排（Milvus的hybrid_search自带的）
-    # RRF：根据召回结果在两种检索方式的排名不同，分别计算每个chunk在各自检索方式的排名得分，然后相加得出最终得分，返回得分高的几个chunk
-    # 查询
-    def search(self,query,query_vector,limit):
-        # 语义检索请求
-        request_vector = AnnSearchRequest(
-            data=[query_vector],
-            anns_field="vector",
-            param={"metric_type":"COSINE"},
-            limit=limit*2
-        )
 
-        # BM25检索请求
-        request_sparse = AnnSearchRequest(
-            data=[query],
-            anns_field="sparse",
-            param={"metric_type":"BM25"},
-            limit=limit*2
-        )
-
-        # 合并检索请求，并将检索结果进行RRF粗排
-        result = self.client.hybrid_search(
-            collection_name=self.collection_name,
-            reqs=[request_vector,request_sparse],
-            ranker=RRFRanker(k=60),
-            limit=limit,
-            output_fields=["text","source"]
-        )
-
-        return result[0] # 检索结果是二维的
         
 
 
 
 
     # 检索进阶版2：语义检索 + BM25关键词检索 + Rerank精排（需要用到模型）
-    # Rerank：先将两种检索结果去重合并，然后利用模型，把问题+chunk一一对应丢给模型，模型根据问题和回答之间的关联性打分（利用Attention机制），返回高分的几个chunk
-    # ...
+    # 此处只进行两路召回，对召回结果进行去重合并
+    # 合并后的结果后续会传给reranker模块
+    def search(self,query,query_vector,limit=10):
+
+        # 语义召回
+        vector_recall = self.client.search(
+            collection_name=self.collection_name,
+            data=[query_vector],
+            anns_field="vector",
+            limit=limit,
+            output_fields=["text","source"]
+        )
+
+        # BM25关键词召回
+        sparse_recall = self.client.search(
+            collection_name=self.collection_name,
+            data=[query],
+            anns_field="sparse",
+            limit=limit,
+            output_fields=["text","source"]
+        )
+
+        # 对两路召回结果进行去重合并
+        # 按照字典中相同key直接覆盖value的方式，根据chunk的id进行去重
+        recall_result = {}
+        for row in vector_recall[0] + sparse_recall[0]:
+            recall_result[row["id"]] = row
+
+        # 最后只要每一个chunk，存为list进行返回
+        return list(recall_result.values())
+       
 
 
 
@@ -379,6 +379,60 @@ if __name__ == "__main__":
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # # 检索进阶版1：语义检索 + BM25关键词检索 + RRF粗排（Milvus的hybrid_search自带的）
+    # # RRF：根据召回结果在两种检索方式的排名不同，分别计算每个chunk在各自检索方式的排名得分，然后相加得出最终得分，返回得分高的几个chunk
+    # # 查询
+    # def search(self,query,query_vector,limit):
+    #     # 语义检索请求
+    #     request_vector = AnnSearchRequest(
+    #         data=[query_vector],
+    #         anns_field="vector",
+    #         param={"metric_type":"COSINE"},
+    #         limit=limit*2
+    #     )
+
+    #     # BM25检索请求
+    #     request_sparse = AnnSearchRequest(
+    #         data=[query],
+    #         anns_field="sparse",
+    #         param={"metric_type":"BM25"},
+    #         limit=limit*2
+    #     )
+
+    #     # 合并检索请求，并将检索结果进行RRF粗排
+    #     result = self.client.hybrid_search(
+    #         collection_name=self.collection_name,
+    #         reqs=[request_vector,request_sparse],
+    #         ranker=RRFRanker(k=60),
+    #         limit=limit,
+    #         output_fields=["text","source"]
+    #     )
+
+    #     return result[0] # 检索结果是二维的
 
 
 
