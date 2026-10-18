@@ -296,7 +296,7 @@ class MilvusStore:
     # 检索进阶版2：语义检索 + BM25关键词检索 + Rerank精排（需要用到模型）
     # 此处只进行两路召回，对召回结果进行去重合并
     # 合并后的结果后续会传给reranker模块
-    def search(self,query,query_vector,limit=10):
+    def search(self,query,query_vector,limit=5):
 
         # 语义召回
         vector_recall = self.client.search(
