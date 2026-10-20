@@ -1,0 +1,424 @@
+{
+  "total": 23,
+  "recall_hit_rate": 0.913,
+  "results": [
+    {
+      "id": 1,
+      "query": "星云X2的屏幕分辨率是多少？亮度多少尼特？",
+      "hit": true,
+      "recalled_sources": [
+        "产品型号价格库存表.csv",
+        "产品技术规格.md"
+      ],
+      "expected_sources": [
+        "产品技术规格.md"
+      ],
+      "answer": "分辨率：466 x 466，亮度 1000 尼特",
+      "covered": [
+        "466",
+        "1000"
+      ],
+      "missed": []
+    },
+    {
+      "id": 2,
+      "query": "星云X2支持哪些卫星定位系统？",
+      "hit": true,
+      "recalled_sources": [
+        "产品型号价格库存表.csv",
+        "产品技术规格.md",
+        "产品用户手册.pdf"
+      ],
+      "expected_sources": [
+        "产品技术规格.md"
+      ],
+      "answer": "支持的卫星定位系统包括 GPS / GLONASS / 北斗。",
+      "covered": [
+        "GPS",
+        "北斗"
+      ],
+      "missed": []
+    },
+    {
+      "id": 3,
+      "query": "手表的电池容量是多大？",
+      "hit": true,
+      "recalled_sources": [
+        "产品技术规格.md",
+        "产品用户手册.pdf",
+        "固件与设备配置.json"
+      ],
+      "expected_sources": [
+        "产品技术规格.md"
+      ],
+      "answer": "电池容量：410 mAh",
+      "covered": [
+        "410"
+      ],
+      "missed": []
+    },
+    {
+      "id": 4,
+      "query": "手表防水等级是多少？能戴着游泳吗？",
+      "hit": true,
+      "recalled_sources": [
+        "产品技术规格.md",
+        "产品用户手册.pdf"
+      ],
+      "expected_sources": [
+        "产品技术规格.md",
+        "产品用户手册.pdf"
+      ],
+      "answer": "防水等级：5 ATM（50 米）\n不能戴着游泳，只能在浅水中临时使用。",
+      "covered": [],
+      "missed": [
+        "50米",
+        "5ATM"
+      ]
+    },
+    {
+      "id": 5,
+      "query": "星云X2尊享版卖多少钱？",
+      "hit": true,
+      "recalled_sources": [
+        "产品型号价格库存表.csv"
+      ],
+      "expected_sources": [
+        "产品型号价格库存表.csv"
+      ],
+      "answer": "售价(元): 1899",
+      "covered": [
+        "1899"
+      ],
+      "missed": []
+    },
+    {
+      "id": 6,
+      "query": "哪款手表最便宜？多少钱？",
+      "hit": false,
+      "recalled_sources": [
+        "产品技术规格.md",
+        "产品用户手册.pdf",
+        "售后服务与保修政策.docx"
+      ],
+      "expected_sources": [
+        "产品型号价格库存表.csv"
+      ],
+      "answer": "不知道",
+      "covered": [],
+      "missed": [
+        "799",
+        "X1"
+      ]
+    },
+    {
+      "id": 7,
+      "query": "星云X2运动版配的是什么材质的表带？",
+      "hit": true,
+      "recalled_sources": [
+        "产品型号价格库存表.csv"
+      ],
+      "expected_sources": [
+        "产品型号价格库存表.csv"
+      ],
+      "answer": "氟橡胶",
+      "covered": [
+        "氟橡胶"
+      ],
+      "missed": []
+    },
+    {
+      "id": 8,
+      "query": "曜石黑有哪几个型号？各自库存多少？",
+      "hit": true,
+      "recalled_sources": [
+        "产品型号价格库存表.csv"
+      ],
+      "expected_sources": [
+        "产品型号价格库存表.csv"
+      ],
+      "answer": "曜石黑有以下型号及库存：\n- 星云X2标准版：库存320台\n- 星云X2尊享版：库存95台",
+      "covered": [
+        "标准版",
+        "尊享版"
+      ],
+      "missed": []
+    },
+    {
+      "id": 9,
+      "query": "手表怎么开机？要按多久？",
+      "hit": true,
+      "recalled_sources": [
+        "产品技术规格.md",
+        "产品用户手册.pdf",
+        "固件与设备配置.json"
+      ],
+      "expected_sources": [
+        "产品用户手册.pdf"
+      ],
+      "answer": "开机长按右侧表冠两秒。",
+      "covered": [
+        "表冠",
+        "两秒"
+      ],
+      "missed": []
+    },
+    {
+      "id": 10,
+      "query": "怎么更换表带？兼容多宽的标准表带？",
+      "hit": true,
+      "recalled_sources": [
+        "产品技术规格.md",
+        "产品用户手册.pdf"
+      ],
+      "expected_sources": [
+        "产品用户手册.pdf"
+      ],
+      "answer": "按住表带接口处的卡扣并向外拉，即可拆卸表带。兼容二十毫米标准表带。",
+      "covered": [
+        "卡扣"
+      ],
+      "missed": [
+        "20毫米"
+      ]
+    },
+    {
+      "id": 11,
+      "query": "用磁吸底座充满电大概要多久？",
+      "hit": true,
+      "recalled_sources": [
+        "产品技术规格.md",
+        "产品用户手册.pdf",
+        "售后服务与保修政策.docx"
+      ],
+      "expected_sources": [
+        "产品用户手册.pdf"
+      ],
+      "answer": "充满约需两小时。",
+      "covered": [
+        "两小时"
+      ],
+      "missed": []
+    },
+    {
+      "id": 12,
+      "query": "标准模式下续航能有多久？",
+      "hit": true,
+      "recalled_sources": [
+        "产品技术规格.md",
+        "产品用户手册.pdf"
+      ],
+      "expected_sources": [
+        "产品技术规格.md",
+        "产品用户手册.pdf"
+      ],
+      "answer": "标准模式下续航可达十四天。",
+      "covered": [
+        "十四天"
+      ],
+      "missed": [
+        "14天"
+      ]
+    },
+    {
+      "id": 13,
+      "query": "手表连不上手机蓝牙，怎么排查？",
+      "hit": true,
+      "recalled_sources": [
+        "产品技术规格.md",
+        "常见问题FAQ.txt"
+      ],
+      "expected_sources": [
+        "常见问题FAQ.txt"
+      ],
+      "answer": "请先确认手机蓝牙已开启，并在手机端删除旧配对记录后重新搜索。若仍无法连接，重启手表并确保手机系统为 Android 8.0 或 iOS 13 及以上版本。",
+      "covered": [
+        "删除",
+        "配对"
+      ],
+      "missed": []
+    },
+    {
+      "id": 14,
+      "query": "屏幕触摸没反应了怎么办？",
+      "hit": true,
+      "recalled_sources": [
+        "产品型号价格库存表.csv",
+        "常见问题FAQ.txt"
+      ],
+      "expected_sources": [
+        "常见问题FAQ.txt"
+      ],
+      "answer": "先擦拭屏幕排除汗渍或水滴干扰；若仍失灵，尝试长按表冠强制重启。多次重启无效请联系售后维修。",
+      "covered": [
+        "擦拭",
+        "重启"
+      ],
+      "missed": []
+    },
+    {
+      "id": 15,
+      "query": "最近感觉续航明显变短了，可能是什么原因？",
+      "hit": true,
+      "recalled_sources": [
+        "产品技术规格.md",
+        "产品用户手册.pdf",
+        "常见问题FAQ.txt"
+      ],
+      "expected_sources": [
+        "常见问题FAQ.txt"
+      ],
+      "answer": "续航缩短通常由连续开启心率监测、常亮表盘或频繁 GPS 运动导致。",
+      "covered": [
+        "心率",
+        "常亮"
+      ],
+      "missed": []
+    },
+    {
+      "id": 16,
+      "query": "手表收不到手机消息通知怎么回事？",
+      "hit": true,
+      "recalled_sources": [
+        "产品型号价格库存表.csv",
+        "常见问题FAQ.txt"
+      ],
+      "expected_sources": [
+        "常见问题FAQ.txt"
+      ],
+      "answer": "请在 App 中检查通知权限是否开启，并确认手表与手机保持连接且未开启勿扰模式。",
+      "covered": [
+        "通知权限",
+        "勿扰"
+      ],
+      "missed": []
+    },
+    {
+      "id": 17,
+      "query": "当前最新的固件版本号是多少？",
+      "hit": true,
+      "recalled_sources": [
+        "售后服务与保修政策.docx",
+        "固件与设备配置.json"
+      ],
+      "expected_sources": [
+        "固件与设备配置.json"
+      ],
+      "answer": "不知道",
+      "covered": [],
+      "missed": [
+        "2.0.7"
+      ]
+    },
+    {
+      "id": 18,
+      "query": "最新固件是什么时候发布的？更新了什么？",
+      "hit": false,
+      "recalled_sources": [
+        "产品用户手册.pdf",
+        "售后服务与保修政策.docx"
+      ],
+      "expected_sources": [
+        "固件与设备配置.json"
+      ],
+      "answer": "不知道",
+      "covered": [],
+      "missed": [
+        "2026-09-15",
+        "表盘商店"
+      ]
+    },
+    {
+      "id": 19,
+      "query": "手表本地存储多大？能存多少首音乐？",
+      "hit": true,
+      "recalled_sources": [
+        "产品技术规格.md",
+        "产品用户手册.pdf",
+        "固件与设备配置.json"
+      ],
+      "expected_sources": [
+        "固件与设备配置.json"
+      ],
+      "answer": "不知道",
+      "covered": [],
+      "missed": [
+        "32MB",
+        "500"
+      ]
+    },
+    {
+      "id": 20,
+      "query": "手表整机保修几年？电池保修多久？",
+      "hit": true,
+      "recalled_sources": [
+        "产品技术规格.md",
+        "售后服务与保修政策.docx"
+      ],
+      "expected_sources": [
+        "售后服务与保修政策.docx"
+      ],
+      "answer": "手表整机保修两年，电池保修一年。",
+      "covered": [
+        "两年",
+        "一年"
+      ],
+      "missed": []
+    },
+    {
+      "id": 21,
+      "query": "不小心进水了，这种情况保修吗？",
+      "hit": true,
+      "recalled_sources": [
+        "产品技术规格.md",
+        "售后服务与保修政策.docx"
+      ],
+      "expected_sources": [
+        "售后服务与保修政策.docx"
+      ],
+      "answer": "不在保修范围内。",
+      "covered": [],
+      "missed": [
+        "不保修",
+        "超出防水"
+      ]
+    },
+    {
+      "id": 22,
+      "query": "官方维修要多久？维修期间有备用机吗？",
+      "hit": true,
+      "recalled_sources": [
+        "产品技术规格.md",
+        "售后服务与保修政策.docx"
+      ],
+      "expected_sources": [
+        "售后服务与保修政策.docx"
+      ],
+      "answer": "官方维修网点在收到设备后五个工作日内完成检测与维修，维修期间提供备用机。",
+      "covered": [
+        "备用机"
+      ],
+      "missed": [
+        "5个工作日"
+      ]
+    },
+    {
+      "id": 23,
+      "query": "七天无理由退货需要满足什么条件？",
+      "hit": true,
+      "recalled_sources": [
+        "产品用户手册.pdf",
+        "售后服务与保修政策.docx"
+      ],
+      "expected_sources": [
+        "售后服务与保修政策.docx"
+      ],
+      "answer": "七天无理由退货需保证商品及包装完好；需提供购买凭证。",
+      "covered": [
+        "包装完好",
+        "购买凭证"
+      ],
+      "missed": []
+    }
+  ]
+}
