@@ -22,6 +22,7 @@ import logging
 import os
 
 from config.settings import Setting
+from datetime import datetime
 
 
 def get_logger(name:str,log_file_path:str=Setting.LOG_FILE_PATH):
@@ -84,13 +85,20 @@ def get_logger(name:str,log_file_path:str=Setting.LOG_FILE_PATH):
     # parents=True表示可以创建多级目录
     # exist_ok=True表示存在路径就跳过
     # 与os区别在于：无需判断空路径，当只有文件名时，此处不是空路径，是"."，表示当前路径；但因为当前路径存在，所以不会再创建
-    path.parent.mkdir(parents=True,exist_ok=True)
+    
+    
+    
+    
+    # 不把log存一个文档里，按日期存不同log文档
+    # path.parent.mkdir(parents=True,exist_ok=True)
+    path.mkdir(parents=True,exist_ok=True)
+    rel_log_file_path = f"{log_file_path}/{datetime.now():%Y%m%d}.log"
 
 
 
-
-
-    log_file = logging.FileHandler(filename=log_file_path,encoding="utf-8") # 文档输出
+    
+    
+    log_file = logging.FileHandler(filename=rel_log_file_path,encoding="utf-8") # 文档输出
     log_file.setFormatter(log_structured_output)
     logger.addHandler(log_file)
 
