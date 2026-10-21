@@ -50,6 +50,13 @@ def chat(query : Query):
 
 
 
+# 挂载静态前端文件夹
+from fastapi.staticfiles import StaticFiles
+app.mount("/", StaticFiles(directory="RAG_HTML", html=True), name="static")
+
+
+
+
 
 if __name__ == "__main__":
     import uvicorn

@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="面向产品知识库的智能问答助手"
+    />
+    <meta name="theme-color" content="#f5f7f4" />
+    <title>知答 · 产品知识库助手</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="应用信息">
+        <a class="brand" href="./" aria-label="知答首页">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none">
+              <path
+                d="M16 3.5 27 9.75v12.5L16 28.5 5 22.25V9.75L16 3.5Z"
+                stroke="currentColor"
+                stroke-width="1.7"
+              />
+              <path
+                d="M11 12.2c1.2-1.7 2.8-2.55 5-2.55 3.5 0 5.7 2.3 5.7 5.45 0 3.35-2.25 5.35-5.7 5.35-2.2 0-3.8-.75-5-2.25M16 8.5v15"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-width="1.7"
+              />
+            </svg>
+          </span>
+          <span class="brand-name">知答<span>RAG 助手</span></span>
+        </a>
+
+        <div class="sidebar-rule"></div>
+
+        <div class="sidebar-label">工作空间</div>
+        <div class="workspace-card">
+          <span class="workspace-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path
+                d="M4 6.5A1.5 1.5 0 0 1 5.5 5h5.1l1.8 2H18.5A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5v-11Z"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M4.5 9h15"
+                stroke="currentColor"
+                stroke-width="1.6"
+              />
+            </svg>
+          </span>
+          <span class="workspace-copy">
+            <strong>产品知识库</strong>
+            <span>问答空间</span>
+          </span>
+          <span class="workspace-dot" aria-hidden="true"></span>
+        </div>
+
+        <div class="sidebar-note">
+          <span class="note-icon" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none">
+              <path
+                d="M10 2.5 16 5v4.3c0 3.7-2.4 6.5-6 8.2-3.6-1.7-6-4.5-6-8.2V5l6-2.5Z"
+                stroke="currentColor"
+                stroke-width="1.4"
+                stroke-linejoin="round"
+              />
+              <path
+                d="m7.5 9.8 1.7 1.7 3.4-3.7"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.4"
+              />
+            </svg>
+          </span>
+          <p>回答基于已接入的知识库内容生成。遇到不确定的问题，助手会尽量如实说明。</p>
+        </div>
+
+        <div class="sidebar-footer">
+          <span class="footer-mark" aria-hidden="true">知</span>
+          <span>本地知识库问答</span>
+          <span class="footer-version">RAG</span>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <div class="topbar-title">
+            <span class="eyebrow">KNOWLEDGE ASSISTANT</span>
+            <h1>产品知识问答</h1>
+          </div>
+          <div class="topbar-actions">
+            <div class="connection-state" id="connectionState" role="status">
+              <span class="state-indicator" id="stateIndicator"></span>
+              <span id="connectionLabel">等待首次提问</span>
+            </div>
+            <button class="clear-button" id="clearButton" type="button" disabled>
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path
+                  d="M4.5 6h11M8 6V4.5h4V6m2.5 0-.6 9.2a1 1 0 0 1-1 .9H7.1a1 1 0 0 1-1-.9L5.5 6m2.8 3v4m3.4-4v4"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.4"
+                />
+              </svg>
+              清空对话
+            </button>
+          </div>
+        </header>
+
+        <section class="conversation" aria-label="问答对话">
+          <div class="welcome" id="welcome">
+            <div class="welcome-art" aria-hidden="true">
+              <span class="art-orbit orbit-one"></span>
+              <span class="art-orbit orbit-two"></span>
+              <span class="art-core">
+                <svg viewBox="0 0 48 48" fill="none">
+                  <path
+                    d="M24 7v5m0 24v5M7 24h5m24 0h5M12 12l3.5 3.5m17 17L36 36m0-24-3.5 3.5m-17 17L12 36"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-width="1.8"
+                  />
+                  <path
+                    d="M24 15.5a8.5 8.5 0 0 0-5.8 14.7c1 .9 1.6 1.9 1.8 3h8c.2-1.1.8-2.1 1.8-3A8.5 8.5 0 0 0 24 15.5Z"
+                    stroke="currentColor"
+                    stroke-linejoin="round"
+                    stroke-width="1.8"
+                  />
+                  <path
+                    d="M21 37h6m-5 3h4"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-width="1.8"
+                  />
+                </svg>
+              </span>
+              <span class="art-spark spark-one"></span>
+              <span class="art-spark spark-two"></span>
+            </div>
+            <p class="welcome-kicker">你好，欢迎使用</p>
+            <h2>有什么产品问题，<br /><span>我可以帮你查一查。</span></h2>
+            <p class="welcome-description">
+              试着询问产品规格、价格库存、使用方法或售后政策。
+            </p>
+
+            <div class="suggestions" aria-label="试试这样提问">
+              <button class="suggestion-card" type="button" data-question="这款产品有哪些技术规格？">
+                <span class="suggestion-icon icon-spec" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none">
+                    <path
+                      d="M5 3.5h7l3 3v10H5v-13Zm7 0v3h3m-7 3h4m-4 3h4"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.4"
+                    />
+                  </svg>
+                </span>
+                <span><strong>了解产品规格</strong><small>查看型号与技术参数</small></span>
+                <span class="suggestion-arrow" aria-hidden="true">↗</span>
+              </button>
+              <button class="suggestion-card" type="button" data-question="产品如何配置和使用？">
+                <span class="suggestion-icon icon-guide" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none">
+                    <path
+                      d="M3.5 5.5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-9a2 2 0 0 1-2-2v-9Zm3 1.5h7m-7 3h7m-7 3h4"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.4"
+                    />
+                  </svg>
+                </span>
+                <span><strong>获取使用指南</strong><small>了解配置与操作方法</small></span>
+                <span class="suggestion-arrow" aria-hidden="true">↗</span>
+              </button>
+              <button class="suggestion-card" type="button" data-question="产品的保修政策是什么？">
+                <span class="suggestion-icon icon-service" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none">
+                    <path
+                      d="M10 2.5 16 5v4.3c0 3.7-2.4 6.5-6 8.2-3.6-1.7-6-4.5-6-8.2V5l6-2.5Z"
+                      stroke="currentColor"
+                      stroke-linejoin="round"
+                      stroke-width="1.4"
+                    />
+                    <path
+                      d="m7.5 9.8 1.7 1.7 3.4-3.7"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.4"
+                    />
+                  </svg>
+                </span>
+                <span><strong>咨询售后服务</strong><small>查询保修与服务政策</small></span>
+                <span class="suggestion-arrow" aria-hidden="true">↗</span>
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="message-list"
+            id="messageList"
+            aria-live="polite"
+            aria-relevant="additions"
+          ></div>
+        </section>
+
+        <footer class="composer-area">
+          <form class="composer" id="chatForm">
+            <label class="visually-hidden" for="questionInput">输入你的问题</label>
+            <textarea
+              id="questionInput"
+              name="question"
+              rows="1"
+              maxlength="2000"
+              placeholder="输入产品问题，按 Enter 发送"
+              autocomplete="off"
+              required
+            ></textarea>
+            <div class="composer-controls">
+              <span class="composer-hint">
+                <kbd>Enter</kbd> 发送 <span class="hint-divider">·</span>
+                <kbd>Shift</kbd> + <kbd>Enter</kbd> 换行
+              </span>
+              <span class="character-count" id="characterCount">0 / 2000</span>
+              <button class="send-button" id="sendButton" type="submit" aria-label="发送问题">
+                <span id="sendButtonText">发送</span>
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path
+                    d="M10 15.5V4.5m0 0L5.5 9m4.5-4.5L14.5 9"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.6"
+                  />
+                </svg>
+              </button>
+            </div>
+          </form>
+          <p class="disclaimer">
+            AI 生成的内容仅供参考，请以产品说明书及官方政策为准。
+          </p>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>
