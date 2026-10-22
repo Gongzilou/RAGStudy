@@ -7,6 +7,8 @@ fastapi接口模块
 # 猴子补丁，替换swagger的cdn为国内可访问的镜像
 from fastapi import applications
 from fastapi.openapi.docs import get_swagger_ui_html
+
+
 def swagger_patch(*args, **kwargs):
     return get_swagger_ui_html(
         *args,
@@ -23,6 +25,7 @@ applications.get_swagger_ui_html = swagger_patch
 from typing import Annotated
 
 from fastapi import FastAPI
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 
 from core.pipeline import RAGPipeline
@@ -45,7 +48,8 @@ class Query(BaseModel):
 @app.post("/chat")
 def chat(query : Query):
     answer = rag.ask(query.question)
-    return {"answer":answer}
+    # return {"answer":answer}
+    return StreamingResponse(answer,media_type="text/plain")
 
 
 

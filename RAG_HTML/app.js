@@ -136,7 +136,7 @@ function describeRequestError(error) {
   ].join("\n");
 }
 
-async function askBackend(question) {
+async function askBackend(question, onChunk) {
   const apiUrl = getApiUrl();
   if (!apiUrl) {
     throw new Error("API 地址为空，请设置后端地址。");
@@ -150,33 +150,58 @@ async function askBackend(question) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json",
+        Accept: "text/plain",
       },
       body: JSON.stringify({ question }),
       signal: controller.signal,
     });
 
-    const responseText = await response.text();
-    let payload;
-    try {
-      payload = responseText ? JSON.parse(responseText) : {};
-    } catch {
-      throw new Error(`后端返回了无法解析的 JSON（HTTP ${response.status}）。`);
-    }
-
     if (!response.ok) {
-      const detail =
-        typeof payload.detail === "string"
-          ? payload.detail
-          : `后端请求失败（HTTP ${response.status}）。`;
-      throw new Error(detail);
+      const responseText = await response.text();
+      let detail;
+      try {
+        const payload = responseText ? JSON.parse(responseText) : {};
+        detail = typeof payload.detail === "string" ? payload.detail : "";
+      } catch {
+        detail = "";
+      }
+      throw new Error(
+        detail || `后端请求失败（HTTP ${response.status}）。`,
+      );
     }
 
-    if (typeof payload.answer !== "string" || payload.answer.trim() === "") {
-      throw new Error("后端响应缺少有效的 answer 字段。");
+    if (!response.body) {
+      throw new Error("后端响应不包含可读取的数据流。");
     }
 
-    return payload.answer;
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let answer = "";
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) {
+        break;
+      }
+
+      const chunk = decoder.decode(value, { stream: true });
+      if (chunk) {
+        answer += chunk;
+        onChunk(chunk);
+      }
+    }
+
+    const finalChunk = decoder.decode();
+    if (finalChunk) {
+      answer += finalChunk;
+      onChunk(finalChunk);
+    }
+
+    if (!answer.trim()) {
+      throw new Error("后端返回了空回答。");
+    }
+
+    return answer;
   } finally {
     window.clearTimeout(timeoutId);
   }
@@ -195,18 +220,30 @@ async function submitQuestion(question) {
   setBusy(true);
   setConnectionState("loading", "正在查询知识库");
   const pendingMessage = addMessage("assistant", "", { pending: true });
+  const answerBubble = pendingMessage.querySelector(".message-bubble");
+  let hasReceivedText = false;
 
   try {
-    const answer = await askBackend(trimmedQuestion);
-    pendingMessage.remove();
-    addMessage("assistant", answer);
+    await askBackend(trimmedQuestion, (chunk) => {
+      if (!hasReceivedText) {
+        hasReceivedText = true;
+        pendingMessage.removeAttribute("aria-label");
+        answerBubble.classList.remove("is-pending");
+        answerBubble.removeAttribute("aria-label");
+        answerBubble.replaceChildren();
+      }
+      answerBubble.textContent += chunk;
+      scrollToLatest();
+    });
     setConnectionState("connected", "API 已连接");
   } catch (error) {
-    pendingMessage.remove();
     const message =
       error instanceof TypeError
         ? describeRequestError(error)
         : error.message || "请求失败，请稍后重试。";
+    if (!hasReceivedText) {
+      pendingMessage.remove();
+    }
     addMessage("assistant", message, { error: true });
     setConnectionState("error", "请求失败");
   } finally {

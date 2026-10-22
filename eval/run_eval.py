@@ -100,7 +100,8 @@ def evaluate(cases,embed,vector_store,agent,reranker):
         # # 初始化Agent
         # agent = Agent()
         # 上下文 + 问题 同时给模型进行回答
-        answer = agent.answer(query,context)
+        # answer = agent.answer(query,context)
+        answer = "".join(agent.answer(query,context))
         # 提取命中的关键词
         keywords = [kw for kw in case["expected_keywords"] if kw in answer]
         # 记录该问题的检测情况

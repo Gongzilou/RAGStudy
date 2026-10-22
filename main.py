@@ -31,7 +31,11 @@ def main():
             continue
         # 正常回答
         answer = rag.ask(query)
-        print(f"AI:\n{answer}")
+        # print(f"AI:\n{answer}")
+        print("AI:")
+        for row in answer:
+            print(row,end="",flush=True)
+        print()
 
 
 

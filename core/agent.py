@@ -88,14 +88,27 @@ class Agent:
 
                     请直接回答，不要解释你是怎么找到的。
                     """
-        response = self.agent.invoke(
+        # response = self.agent.invoke(
+        #     {
+        #         "messages":[
+        #             HumanMessage(content=user_prompt)
+        #         ]
+        #     }
+        # )
+        # return response["messages"][-1].content
+        response = self.agent.stream(
             {
                 "messages":[
                     HumanMessage(content=user_prompt)
                 ]
-            }
+            },
+            stream_mode="messages"
         )
-        return response["messages"][-1].content
+        for chunk,metadata in response:
+            if hasattr(chunk,"content") and chunk.content:
+                # print(chunk.content,end="",flush=True)
+                yield chunk.content
+
 
 
 
@@ -107,4 +120,7 @@ if __name__ == "__main__":
     # context = "之前进行了互相介绍，用户叫公子，agent叫小智"
     context = ""
     result = agent.answer(query,context)
-    print(f"结果：\n{result}")
+    # print(f"结果：\n{result}")
+    print("结果：")
+    for row in result:
+        print(row,end="",flush=True)
