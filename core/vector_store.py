@@ -101,7 +101,7 @@ class MilvusStore:
                     FieldSchema("id",DataType.INT64,is_primary=True),
 
                     # vector，chunk内容对应的向量，由嵌入模型提供
-                    FieldSchema("vector",DataType.FLOAT_VECTOR,dim=1024),
+                    FieldSchema("vector",DataType.FLOAT_VECTOR,dim=self.embed_dimension),
 
                     # sparse，chunk文本对应的稀疏向量，由BM25 Function自动根据text生成
                     # 稀疏向量里存放的就是每个词ID和对应的权重
