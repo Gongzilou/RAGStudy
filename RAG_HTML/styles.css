@@ -13,6 +13,16 @@
   --ink: #26332e;
   --muted: #87918b;
   --line: #e9ede9;
+  --splash-background: #f5f7f4;
+  --splash-fill: #d8eadc;
+  --splash-mark-color: #6b9e7e;
+  --splash-duration: 2150ms;
+  --splash-draw-duration: 650ms;
+  --splash-rotation-start: -270deg;
+  --splash-mark-size: clamp(100px, 20vw, 136px);
+  --splash-line-width: 1px;
+  --splash-easing: cubic-bezier(0.25, 0.7, 0.2, 1);
+  --splash-draw-easing: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
@@ -23,6 +33,159 @@ body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
+}
+
+html.intro-active body {
+  overflow: hidden;
+}
+
+html.intro-active {
+  overflow-x: clip;
+}
+
+.intro-overlay {
+  display: none;
+}
+
+html.intro-active .intro-overlay {
+  position: fixed;
+  z-index: 10000;
+  inset: 0;
+  display: block;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--splash-background);
+  animation: intro-overlay-clear var(--splash-duration) ease-out both;
+}
+
+.intro-wash {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200vmax;
+  height: 200vmax;
+  border-radius: 50%;
+  background: var(--splash-fill);
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(0);
+  animation: intro-wash-expand var(--splash-duration) ease-out both;
+}
+
+.intro-mark {
+  position: absolute;
+  top: 50%;
+  width: var(--splash-mark-size);
+  height: var(--splash-mark-size);
+  overflow: visible;
+  pointer-events: none;
+}
+
+.intro-door {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  overflow: hidden;
+  background-color: transparent;
+  animation:
+    intro-door-open var(--splash-duration) var(--splash-easing) both,
+    intro-door-color var(--splash-duration) ease-out both;
+}
+
+.intro-door--left {
+  left: 0;
+  --door-open-distance: -100%;
+}
+
+.intro-door--left .intro-mark {
+  left: calc(100% - var(--splash-mark-size));
+  transform: translate(50%, -50%);
+}
+
+.intro-door--right {
+  left: 50%;
+  --door-open-distance: 100%;
+}
+
+.intro-door--right .intro-mark {
+  left: 0;
+  transform: translate(-50%, -50%);
+}
+
+.intro-mark-rotation {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: intro-mark-rotate var(--splash-duration) var(--splash-easing) both;
+}
+
+.intro-piece {
+  fill: var(--splash-mark-color);
+  fill-opacity: 0;
+  stroke: var(--splash-mark-color);
+  stroke-width: var(--splash-line-width);
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  stroke-linejoin: round;
+  animation:
+    intro-piece-draw var(--splash-draw-duration) var(--splash-draw-easing) both,
+    intro-piece-fill 550ms ease-out 400ms both;
+}
+
+.intro-piece--top {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation:
+    intro-piece-assemble-top var(--splash-draw-duration) var(--splash-easing) both,
+    intro-piece-draw var(--splash-draw-duration) var(--splash-draw-easing) both,
+    intro-piece-fill 550ms ease-out 400ms both;
+}
+
+.intro-piece--right {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation:
+    intro-piece-assemble-right var(--splash-draw-duration) var(--splash-easing) both,
+    intro-piece-draw var(--splash-draw-duration) var(--splash-draw-easing) both,
+    intro-piece-fill 550ms ease-out 400ms both;
+}
+
+.intro-piece--left {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation:
+    intro-piece-assemble-left var(--splash-draw-duration) var(--splash-easing) both,
+    intro-piece-draw var(--splash-draw-duration) var(--splash-draw-easing) both,
+    intro-piece-fill 550ms ease-out 400ms both;
+}
+
+.intro-seam {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  width: var(--splash-line-width);
+  background: var(--splash-mark-color);
+  opacity: 0;
+  transform: translateX(-50%) scaleY(0);
+  animation: intro-seam-reveal var(--splash-duration) var(--splash-easing) both;
+}
+
+.intro-seam--top {
+  top: 0;
+  height: calc(50vh - var(--splash-mark-size) / 2 + 5px);
+  height: calc(50dvh - var(--splash-mark-size) / 2 + 5px);
+  transform-origin: top;
+}
+
+.intro-seam--bottom {
+  bottom: 0;
+  height: calc(50vh - var(--splash-mark-size) / 2 + 5px);
+  height: calc(50dvh - var(--splash-mark-size) / 2 + 5px);
+  transform-origin: bottom;
+}
+
+html.intro-active .app-shell {
+  animation: intro-content-reveal var(--splash-duration) var(--splash-easing) both;
 }
 
 button,
@@ -822,6 +985,147 @@ kbd {
   to {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+
+@keyframes intro-wash-expand {
+  0%,
+  16% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0);
+  }
+
+  38%,
+  75% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.62);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.62);
+  }
+}
+
+@keyframes intro-overlay-clear {
+  0%,
+  50% {
+    background-color: var(--splash-background);
+  }
+
+  60%,
+  100% {
+    background-color: transparent;
+  }
+}
+
+@keyframes intro-door-color {
+  0%,
+  42% {
+    background-color: transparent;
+  }
+
+  55%,
+  100% {
+    background-color: var(--splash-fill);
+  }
+}
+
+@keyframes intro-piece-assemble-top {
+  from {
+    transform: translate(-15px, -25px);
+  }
+
+  to {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes intro-piece-assemble-right {
+  from {
+    transform: translate(25px, 14px);
+  }
+
+  to {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes intro-piece-assemble-left {
+  from {
+    transform: translate(-25px, 14px);
+  }
+
+  to {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes intro-piece-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes intro-piece-fill {
+  to {
+    fill-opacity: 1;
+  }
+}
+
+@keyframes intro-mark-rotate {
+  0% {
+    transform: rotate(var(--splash-rotation-start));
+  }
+
+  44%,
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes intro-seam-reveal {
+  0%,
+  49% {
+    opacity: 0;
+    transform: translateX(-50%) scaleY(0);
+  }
+
+  55% {
+    opacity: 1;
+    transform: translateX(-50%) scaleY(1);
+  }
+
+  76% {
+    opacity: 1;
+    transform: translateX(-50%) scaleY(1);
+  }
+
+  84%,
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) scaleY(1);
+  }
+}
+
+@keyframes intro-door-open {
+  0%,
+  75% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(var(--door-open-distance));
+  }
+}
+
+@keyframes intro-content-reveal {
+  0% {
+    transform: scale(1.03);
+  }
+
+  100% {
+    transform: scale(1);
   }
 }
 

@@ -9,10 +9,113 @@
     />
     <meta name="theme-color" content="#f5f7f4" />
     <title>知答 · 产品知识库助手</title>
+    <script>
+      (() => {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          return;
+        }
+
+        try {
+          const key = "ragstudy.introPlayed";
+          if (sessionStorage.getItem(key) === "1") {
+            return;
+          }
+          sessionStorage.setItem(key, "1");
+        } catch (error) {
+          console.warn("无法保存开屏动画状态，将跳过动画。", error);
+          return;
+        }
+
+        document.documentElement.classList.add("intro-active");
+      })();
+    </script>
     <link rel="stylesheet" href="./styles.css" />
     <script src="./app.js" defer></script>
   </head>
   <body>
+    <div class="intro-overlay" id="introSplash" aria-hidden="true">
+      <div class="intro-wash"></div>
+      <div class="intro-seam intro-seam--top"></div>
+      <div class="intro-seam intro-seam--bottom"></div>
+      <div class="intro-door intro-door--left">
+        <svg class="intro-mark" viewBox="0 0 100 100" focusable="false">
+          <g class="intro-mark-rotation">
+            <path
+              class="intro-piece intro-piece--top"
+              pathLength="1"
+              d="M51.6 4.1 A46 46 0 0 1 90.6 71.6 L65 58 A17 17 0 0 0 50.6 33 Z"
+            />
+            <path
+              class="intro-piece intro-piece--right"
+              pathLength="1"
+              d="M89 74.4 A46 46 0 0 1 11 74.4 L35.6 59 A17 17 0 0 0 64.4 59 Z"
+            />
+            <path
+              class="intro-piece intro-piece--left"
+              pathLength="1"
+              d="M9.4 71.6 A46 46 0 0 1 51.6 4.1 L50.6 33 A17 17 0 0 0 35 58 Z"
+            />
+          </g>
+        </svg>
+      </div>
+      <div class="intro-door intro-door--right">
+        <svg class="intro-mark" viewBox="0 0 100 100" focusable="false">
+          <g class="intro-mark-rotation">
+            <path
+              class="intro-piece intro-piece--top"
+              pathLength="1"
+              d="M51.6 4.1 A46 46 0 0 1 90.6 71.6 L65 58 A17 17 0 0 0 50.6 33 Z"
+            />
+            <path
+              class="intro-piece intro-piece--right"
+              pathLength="1"
+              d="M89 74.4 A46 46 0 0 1 11 74.4 L35.6 59 A17 17 0 0 0 64.4 59 Z"
+            />
+            <path
+              class="intro-piece intro-piece--left"
+              pathLength="1"
+              d="M9.4 71.6 A46 46 0 0 1 51.6 4.1 L50.6 33 A17 17 0 0 0 35 58 Z"
+            />
+          </g>
+        </svg>
+      </div>
+    </div>
+    <script>
+      (() => {
+        const overlay = document.getElementById("introSplash");
+        const root = document.documentElement;
+
+        if (!root.classList.contains("intro-active")) {
+          overlay.remove();
+          return;
+        }
+
+        let finished = false;
+        let fallbackTimer;
+        const finish = () => {
+          if (finished) {
+            return;
+          }
+          finished = true;
+          window.clearTimeout(fallbackTimer);
+          overlay.style.pointerEvents = "none";
+          root.classList.remove("intro-active");
+          overlay.remove();
+        };
+        const onAnimationEnd = (event) => {
+          if (
+            event.target instanceof HTMLElement &&
+            event.target.classList.contains("intro-door") &&
+            event.animationName === "intro-door-open"
+          ) {
+            finish();
+          }
+        };
+
+        overlay.addEventListener("animationend", onAnimationEnd);
+        fallbackTimer = window.setTimeout(finish, 2200);
+      })();
+    </script>
     <div class="app-shell">
       <aside class="sidebar" aria-label="应用信息">
         <a class="brand" href="./" aria-label="知答首页">
